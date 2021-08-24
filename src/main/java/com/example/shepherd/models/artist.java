@@ -4,12 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "artists")
-class artist extends profile{
+class Artist extends Profile{
 
-    public artist(String name, String city) {
+    public Artist(String name, String city) {
         super(name, city);
     }
 
-    public artist() {
+    public Artist() {
     }
 }

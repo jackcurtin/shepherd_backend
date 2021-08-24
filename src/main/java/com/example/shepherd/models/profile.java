@@ -2,7 +2,7 @@ package com.example.shepherd.models;
 
 import javax.persistence.*;
 
-public abstract class profile {
+public abstract class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -11,17 +11,32 @@ public abstract class profile {
     private String name;
     @Column
     private String city;
+    @Column
+    @ManyToOne
+    private Long accountId;
 
-    public profile(String name, String city) {
+    public Profile(String name, String city) {
         this.name = name;
         this.city = city;
     }
 
-    public profile() {
+    public Profile() {
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {

@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="labels")
-class label extends profile{
+class Label extends Profile{
 
-    public label(String name, String city) {
+    public Label(String name, String city) {
         super(name, city);
     }
 
-    public label() {
+    public Label() {
     }
     
 }
