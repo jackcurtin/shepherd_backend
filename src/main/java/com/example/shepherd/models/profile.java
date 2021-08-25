@@ -2,6 +2,8 @@ package com.example.shepherd.models;
 
 import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +13,7 @@ public abstract class Profile {
     private String name;
     @Column
     private String city;
-    @Column
+    
     @ManyToOne
     private Long accountId;
 
