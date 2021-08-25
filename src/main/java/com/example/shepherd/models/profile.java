@@ -3,6 +3,7 @@ package com.example.shepherd.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "profiles")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Profile {
     @Id
