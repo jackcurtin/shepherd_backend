@@ -15,7 +15,7 @@ public abstract class Profile {
     private String city;
     
     @ManyToOne
-    private Long accountId;
+    private Account account;
 
     public Profile(String name, String city) {
         this.name = name;
@@ -33,12 +33,12 @@ public abstract class Profile {
         this.id = id;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Account getAccountId() {
+        return account;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccountId(Account account) {
+        this.account = account;
     }
 
     public String getName() {

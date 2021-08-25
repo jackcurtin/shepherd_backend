@@ -18,11 +18,11 @@ public class Account {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "accountId", orphanRemoval = true)
+    @OneToMany(mappedBy = "account", orphanRemoval = true)
     @JsonIgnore
     private Set<Label> labels;
 
-    @OneToMany(mappedBy = "accountId", orphanRemoval = true)
+    @OneToMany(mappedBy = "account", orphanRemoval = true)
     @JsonIgnore
     private Set<Artist> artists;
 }
