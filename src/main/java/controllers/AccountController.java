@@ -14,7 +14,7 @@ import java.util.List;
 import com.example.shepherd.models.Account;
 
 @RestController
-@RequestMapping(path = "/api/accounts")
+@RequestMapping(path = "/auth/")
 public class AccountController {
     private AccountService accountService;
 
@@ -23,13 +23,13 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("accounts/all")
     public List<Account> getAllAccounts(){
         System.out.println("Controller calling getAllAccounts");
         return accountService.getAllAccounts();
     }
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public Account createAccount(@RequestBody Account accountObject){
         System.out.println("Controller calling createAccount");
         return accountService.createAccount(accountObject);
