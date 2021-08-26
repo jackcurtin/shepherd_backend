@@ -14,7 +14,7 @@ import java.util.List;
 import com.example.shepherd.models.Account;
 
 @RestController
-@RequestMapping(path = "/api/accounts/")
+@RequestMapping(path = "/api/accounts")
 public class AccountController {
     private AccountService accountService;
 
@@ -23,7 +23,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Account> getAllAccounts(){
         System.out.println("Controller calling getAllAccounts");
         return accountService.getAllAccounts();
