@@ -1,13 +1,12 @@
-package services;
+package com.example.shepherd.services;
 
 import java.util.List;
 
 import com.example.shepherd.models.Account;
+import com.example.shepherd.repos.AccountRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import repos.AccountRepo;
 
 @Service
 public class AccountService {

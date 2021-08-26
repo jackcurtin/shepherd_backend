@@ -1,4 +1,4 @@
-package controllers;
+package com.example.shepherd.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import services.AccountService;
-
 import java.util.List;
 
 import com.example.shepherd.models.Account;
+import com.example.shepherd.services.AccountService;
 
 @RestController
 @RequestMapping(path = "/auth/")
@@ -19,7 +18,7 @@ public class AccountController {
     private AccountService accountService;
 
     @Autowired
-    private void setAccountService (AccountService accountService){
+    public void setAccountService (AccountService accountService){
         this.accountService = accountService;
     }
 

@@ -1,4 +1,4 @@
-package repos;
+package com.example.shepherd.repos;
 
 import com.example.shepherd.models.Account;
 
