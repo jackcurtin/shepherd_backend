@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "labels")
 @PrimaryKeyJoinColumn(name = "id")
-class Label extends Profile{
+public class Label extends Profile{
 
     public Label(String name, String city) {
         super(name, city);
