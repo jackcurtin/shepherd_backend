@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "artists")
 @PrimaryKeyJoinColumn(name = "id")
-class Artist extends Profile{
+public class Artist extends Profile{
 
     public Artist(String name, String city) {
         super(name, city);
