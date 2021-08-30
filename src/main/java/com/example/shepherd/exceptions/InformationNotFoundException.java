@@ -3,9 +3,9 @@ package com.example.shepherd.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.FORBIDDEN)
-public class CannotBeNullException extends RuntimeException{
-    public CannotBeNullException(String message){
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class InformationNotFoundException extends RuntimeException {
+    public InformationNotFoundException(String message){
         super(message);
     }
     
