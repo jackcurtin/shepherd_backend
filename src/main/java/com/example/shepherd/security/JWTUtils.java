@@ -43,7 +43,7 @@ public class JWTUtils {
         return extractClaims(token, Claims::getExpiration);
     }
 
-    private String extractUsername(String token) {
+    public String extractUsername(String token) {
         return extractClaims(token, Claims::getSubject);
     }
 
