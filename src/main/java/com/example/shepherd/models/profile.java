@@ -34,11 +34,11 @@ public abstract class Profile {
         this.id = id;
     }
 
-    public Account getAccountId() {
+    public Account getAccount() {
         return account;
     }
 
-    public void setAccountId(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 
