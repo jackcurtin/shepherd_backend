@@ -53,8 +53,7 @@ public class AccountService {
     public ResponseEntity<Object> login(LoginRequest loginRequest) {
         System.out.println("Service calling login");
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginRequest.getEmailAddress(), loginRequest.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmailAddress(), loginRequest.getPassword()));
             final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmailAddress());
             final String JWT = jwtUtils.generateToken(userDetails);
             return ResponseEntity.ok(new LoginResponse(JWT));

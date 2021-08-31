@@ -35,6 +35,7 @@ public class AccountController {
         System.out.println("Controller calling createAccount");
         return accountService.createAccount(accountObject);
     }
+    
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         System.out.println("Controller calling login");
