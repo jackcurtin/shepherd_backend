@@ -27,7 +27,7 @@ public class Release {
     public Release() {
     }
 
-    public Release(String title, Artist artist, Label label) {
+    public Release(String title) {
         this.title = title;
     }
 
