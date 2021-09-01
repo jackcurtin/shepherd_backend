@@ -18,4 +18,18 @@ public class Artist extends Profile{
 
     public Artist() {
     }
+
+    public List<Release> getReleases() {
+        return releases;
+    }
+
+    public void setReleases(List<Release> releases) {
+        this.releases = releases;
+    }
+
+    public void addRelease(Release release){
+        this.releases.add(release);
+    }
+
+    
 }
