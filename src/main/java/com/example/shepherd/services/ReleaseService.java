@@ -1,5 +1,8 @@
 package com.example.shepherd.services;
 
+import java.util.Optional;
+
+import com.example.shepherd.exceptions.InformationExistsException;
 import com.example.shepherd.models.Release;
 import com.example.shepherd.repos.ReleaseRepo;
 
@@ -17,6 +20,13 @@ public class ReleaseService {
 
     public Release createRelease(Release releaseObject){
         System.out.println("Service calling createRelease");
-        if(releaseRepo.find)
+        Optional<Release> release = releaseRepo.findByTitleAndArtist(releaseObject.getTitle(), releaseObject.getArtist().getName());
+        if(release.isPresent()){
+            throw new InformationExistsException(release.get().getTitle() + " by " + release.get().getArtist().getName() + "already in database");
+        }
+        else{
+            return releaseRepo.save(releaseObject);
+        }
+        
     }
 }
