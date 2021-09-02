@@ -28,7 +28,7 @@ public class ReleaseController  {
     }
 
     @PostMapping("/pair")
-    public String createLabelRelease(@RequestBody Map<Long, Long> releaseLabelPairing){
+    public String createLabelRelease(@RequestBody Map<String, String> releaseLabelPairing){
         System.out.println("Controller calling createLabelRelease");
         return releaseService.createLabelRelease(releaseLabelPairing);
     } 

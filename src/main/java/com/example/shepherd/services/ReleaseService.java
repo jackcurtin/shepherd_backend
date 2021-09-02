@@ -49,10 +49,10 @@ public class ReleaseService {
         }
     }
 
-    public String createLabelRelease(Map<Long, Long> releaseLabelPairing){
+    public String createLabelRelease(Map<String, String> releaseLabelPairing){
         System.out.println("Service calling createLabelRelease");
-        Optional<Release> releaseOpt = releaseRepo.findById(releaseLabelPairing.get("releaseId"));
-        Optional<Label> labelOpt = labelRepo.findById(releaseLabelPairing.get("labelId"));
+        Optional<Release> releaseOpt = releaseRepo.findById(Long.parseLong(releaseLabelPairing.get("releaseId")));
+        Optional<Label> labelOpt = labelRepo.findById(Long.parseLong(releaseLabelPairing.get("labelId")));
         if(releaseOpt.isEmpty()){
             throw new InformationNotFoundException("Release not found in database");
         }
@@ -62,6 +62,8 @@ public class ReleaseService {
         else{
             releaseOpt.get().getLabels().add(labelOpt.get());
             labelOpt.get().getReleases().add(releaseOpt.get());
+            releaseRepo.save(releaseOpt.get());
+            labelRepo.save(labelOpt.get());
             return releaseOpt.get().getTitle() + " on " + labelOpt.get().getName() + " has been created!";
         }
     }
