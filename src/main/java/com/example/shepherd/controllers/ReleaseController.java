@@ -1,5 +1,7 @@
 package com.example.shepherd.controllers;
 
+import java.util.Map;
+
 import com.example.shepherd.models.Release;
 import com.example.shepherd.services.ReleaseService;
 
@@ -20,7 +22,7 @@ public class ReleaseController  {
     }
 
     @PostMapping("/create")
-    public Release createRelease(@RequestBody Release releaseObject){
+    public Release createRelease(@RequestBody Map<String, String> releaseObject){
         System.out.println("Controller calling createRelease");
         return releaseService.createRelease(releaseObject);
     }

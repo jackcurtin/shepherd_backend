@@ -2,6 +2,8 @@ package com.example.shepherd.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "profiles")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -16,6 +18,7 @@ public abstract class Profile {
     private String city;
     
     @ManyToOne
+    @JsonIgnore
     private Account account;
 
     public Profile(String name, String city) {

@@ -1,12 +1,20 @@
 package com.example.shepherd.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "releases")
@@ -19,16 +27,20 @@ public class Release {
     private String title;
 
     @ManyToOne
+    @JsonIgnore
     private Artist artist;
 
-    @ManyToOne
-    private Label label;
+    @ManyToMany(mappedBy = "releases")
+    @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List <Label> labels;
 
     public Release() {
     }
 
-    public Release(String title) {
+    public Release(String title, Artist artist) {
         this.title = title;
+        this.artist = artist;
     }
 
     public Long getId() {
@@ -55,12 +67,12 @@ public class Release {
         this.artist = artist;
     }
 
-    public Label getLabel() {
-        return label;
+    public List<Label> getLabels() {
+        return labels;
     }
 
-    public void setLabel(Label label) {
-        this.label = label;
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 
     @Override
