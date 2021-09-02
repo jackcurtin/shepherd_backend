@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -14,6 +12,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "labels")
 @PrimaryKeyJoinColumn(name = "id")
 public class Label extends Profile{
+
+    @Column
+    private Boolean openToSubmissions;
 
     @ManyToMany
     @Cascade({org.hibernate.annotations.CascadeType.REMOVE, org.hibernate.annotations.CascadeType.DELETE})
@@ -26,6 +27,7 @@ public class Label extends Profile{
 
     public Label(String name, String city) {
         super(name, city);
+        openToSubmissions = false;
     }
 
     public Label() {
@@ -41,6 +43,14 @@ public class Label extends Profile{
 
     public void addRelease(Release release){
         this.releases.add(release);
+    }
+
+    public Boolean getOpenToSubmissions() {
+        return openToSubmissions;
+    }
+
+    public void toggleOpenToSubmissions() {
+        this.openToSubmissions = !openToSubmissions;
     }
     
 }

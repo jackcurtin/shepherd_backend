@@ -43,4 +43,10 @@ public class LabelController {
         return labelService.updateLabel(labelId, labelObject);
     }
 
+    @PutMapping("/{labelId}/toggleSub")
+    public String toggleSubmissions(@PathVariable long labelId){
+        System.out.println("Controller calling toggleSubmissions");
+        return labelService.toggleSubmissions(labelId);
+    }
+
 }

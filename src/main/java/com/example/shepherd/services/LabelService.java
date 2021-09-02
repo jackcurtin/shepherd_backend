@@ -55,5 +55,18 @@ public class LabelService {
             return labelRepo.save(labelOpt.get());
         }
     }
+
+    public String toggleSubmissions(Long labelId){
+        System.out.println("Service calling toggleSubmissions");
+        Optional<Label> labelOpt = labelRepo.findById(labelId);
+        if(labelOpt.isEmpty()){
+            throw new InformationNotFoundException("Label not found");
+        }
+        else{
+            labelOpt.get().toggleOpenToSubmissions();
+            labelRepo.save(labelOpt.get());
+            return "submissions toggled";
+        }
+    }
     
 }
