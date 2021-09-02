@@ -1,7 +1,10 @@
 package com.example.shepherd.services;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import com.example.shepherd.exceptions.InformationNotFoundException;
 import com.example.shepherd.models.Account;
 import com.example.shepherd.models.Label;
 import com.example.shepherd.repos.AccountRepo;
@@ -33,11 +36,24 @@ public class LabelService {
     }
 
     public Label addLabel(Label labelObject){
-        System.out.println(labelObject);
+        System.out.println("Service calling addLabel");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Account account = accountRepo.findByEmailAddress(userDetails.getUsername()).get();
         labelObject.setAccount(account);
         return labelRepo.save(labelObject);
+    }
+
+    public Label updateLabel(Long labelId, Map<String, String> labelObject){
+        System.out.println("Service calling updateLabel");
+        Optional<Label> labelOpt = labelRepo.findById(labelId);
+        if(labelOpt.isEmpty()){
+            throw new InformationNotFoundException("Label not found");
+        }
+        else{
+            labelOpt.get().setName(labelObject.get("name"));
+            labelOpt.get().setCity(labelObject.get("city"));
+            return labelRepo.save(labelOpt.get());
+        }
     }
     
 }
