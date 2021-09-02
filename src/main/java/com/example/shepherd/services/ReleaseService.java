@@ -4,7 +4,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.example.shepherd.exceptions.InformationExistsException;
+import com.example.shepherd.exceptions.InformationNotFoundException;
 import com.example.shepherd.models.Artist;
+import com.example.shepherd.models.Label;
 import com.example.shepherd.models.Release;
 import com.example.shepherd.repos.ArtistRepo;
 import com.example.shepherd.repos.LabelRepo;
@@ -44,6 +46,23 @@ public class ReleaseService {
         else{
             Release release = new Release(releaseObject.get("title"), artistOpt.get());
             return releaseRepo.save(release);
+        }
+    }
+
+    public String createLabelRelease(Map<Long, Long> releaseLabelPairing){
+        System.out.println("Service calling createLabelRelease");
+        Optional<Release> releaseOpt = releaseRepo.findById(releaseLabelPairing.get("releaseId"));
+        Optional<Label> labelOpt = labelRepo.findById(releaseLabelPairing.get("labelId"));
+        if(releaseOpt.isEmpty()){
+            throw new InformationNotFoundException("Release not found in database");
+        }
+        else if (labelOpt.isEmpty()){
+            throw new InformationNotFoundException("Label not found in database");
+        }
+        else{
+            releaseOpt.get().getLabels().add(labelOpt.get());
+            labelOpt.get().getReleases().add(releaseOpt.get());
+            return releaseOpt.get().getTitle() + " on " + labelOpt.get().getName() + " has been created!";
         }
     }
 }
