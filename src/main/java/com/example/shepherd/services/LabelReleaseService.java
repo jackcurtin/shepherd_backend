@@ -3,6 +3,7 @@ package com.example.shepherd.services;
 import java.util.Map;
 import java.util.Optional;
 
+import com.example.shepherd.exceptions.InformationExistsException;
 import com.example.shepherd.exceptions.InformationNotFoundException;
 import com.example.shepherd.models.Label;
 import com.example.shepherd.models.LabelRelease;
@@ -48,7 +49,17 @@ public class LabelReleaseService {
             throw new InformationNotFoundException("Label not found in database");
         }
         else{
-            LabelRelease labelRelease = new LabelRelease(
+            Optional<LabelRelease> labelReleaseOpt = labelReleaseRepo.findByTitleAndArtistAndLabel(
+                releaseOpt.get().getTitle(), 
+                releaseOpt.get().getArtist(), 
+                labelOpt.get()
+                );
+
+            if(labelReleaseOpt.isPresent()){
+                throw new InformationExistsException("This exact release is already on this label");
+            }
+            else{
+                LabelRelease labelRelease = new LabelRelease(
                 releaseOpt.get().getTitle(), 
                 releaseOpt.get().getArtist(), 
                 labelReleaseObject.get("format"), 
@@ -56,6 +67,7 @@ public class LabelReleaseService {
                 labelOpt.get()
                 );
             return labelReleaseRepo.save(labelRelease);
+            }
         }
     }
 
