@@ -21,9 +21,10 @@ public class LabelReleaseController {
         this.labelReleaseService = labelReleaseService;
     }
 
-    @PostMapping("/{releaseId}/newLabelRelease")
+    @PostMapping("/{releaseId}/new")
     public LabelRelease createLabelRelease(@PathVariable Long releaseId, Map<String, String> labelReleaseObject){
         System.out.println("Controller calling createLabelRelease");
+        System.out.println(releaseId);
         return labelReleaseService.createLabelRelease(releaseId, labelReleaseObject);
     }
     
