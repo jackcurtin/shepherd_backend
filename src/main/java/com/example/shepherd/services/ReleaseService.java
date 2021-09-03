@@ -4,12 +4,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.example.shepherd.exceptions.InformationExistsException;
-import com.example.shepherd.exceptions.InformationNotFoundException;
 import com.example.shepherd.models.Artist;
-import com.example.shepherd.models.Label;
 import com.example.shepherd.models.Release;
 import com.example.shepherd.repos.ArtistRepo;
-import com.example.shepherd.repos.LabelRepo;
 import com.example.shepherd.repos.ReleaseRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class ReleaseService {
     private ReleaseRepo releaseRepo;
     private ArtistRepo artistRepo;
-    private LabelRepo labelRepo;
 
     @Autowired
     private void ReleaseRepo(ReleaseRepo releaseRepo){
@@ -29,11 +25,6 @@ public class ReleaseService {
     @Autowired
     private void ArtistRepo(ArtistRepo artistRepo){
         this.artistRepo = artistRepo;
-    }
-
-    @Autowired
-    private void LabelRepo(LabelRepo labelRepo){
-        this.labelRepo = labelRepo;
     }
 
     public Release createRelease(Map <String, String> releaseObject){
@@ -46,23 +37,6 @@ public class ReleaseService {
         else{
             Release release = new Release(releaseObject.get("title"), artistOpt.get());
             return releaseRepo.save(release);
-        }
-    }
-
-    public String createLabelRelease(Map<String, String> releaseLabelPairing){
-        System.out.println("Service calling createLabelRelease");
-        Optional<Release> releaseOpt = releaseRepo.findById(Long.parseLong(releaseLabelPairing.get("releaseId")));
-        Optional<Label> labelOpt = labelRepo.findById(Long.parseLong(releaseLabelPairing.get("labelId")));
-        if(releaseOpt.isEmpty()){
-            throw new InformationNotFoundException("Master release not found in database");
-        }
-        else if (labelOpt.isEmpty()){
-            throw new InformationNotFoundException("Label not found in database");
-        }
-        else{
-            releaseRepo.save(releaseOpt.get());
-            labelRepo.save(labelOpt.get());
-            return releaseOpt.get().getTitle() + " on " + labelOpt.get().getName() + " has been created!";
         }
     }
 }
