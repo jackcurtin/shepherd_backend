@@ -54,14 +54,12 @@ public class ReleaseService {
         Optional<Release> releaseOpt = releaseRepo.findById(Long.parseLong(releaseLabelPairing.get("releaseId")));
         Optional<Label> labelOpt = labelRepo.findById(Long.parseLong(releaseLabelPairing.get("labelId")));
         if(releaseOpt.isEmpty()){
-            throw new InformationNotFoundException("Release not found in database");
+            throw new InformationNotFoundException("Master release not found in database");
         }
         else if (labelOpt.isEmpty()){
             throw new InformationNotFoundException("Label not found in database");
         }
         else{
-            releaseOpt.get().getLabels().add(labelOpt.get());
-            labelOpt.get().getReleases().add(releaseOpt.get());
             releaseRepo.save(releaseOpt.get());
             labelRepo.save(labelOpt.get());
             return releaseOpt.get().getTitle() + " on " + labelOpt.get().getName() + " has been created!";
