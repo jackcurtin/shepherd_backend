@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class LabelRelease extends Release {
 
     @Column
-    private String medium;
+    private String format;
 
     @Column 
     private int numberOfCopies;
@@ -21,19 +21,19 @@ public class LabelRelease extends Release {
     @ManyToOne
     private Label label;
     
-    public LabelRelease(String title, Artist artist, String medium, int numberOfCopies, Label label){
+    public LabelRelease(String title, Artist artist, String format, int numberOfCopies, Label label){
         super(title, artist);
-        this.medium = medium;
+        this.format = format;
         this.numberOfCopies = numberOfCopies;
         this.label = label;
     }
 
-    public String getMedium() {
-        return medium;
+    public String getFormat() {
+        return format;
     }
 
-    public void setMedium(String medium) {
-        this.medium = medium;
+    public void setFormat(String format) {
+        this.format = format;
     }
 
     public int getNumberOfCopies() {
@@ -55,7 +55,7 @@ public class LabelRelease extends Release {
     @Override
     public String toString() {
         return "LabelRelease [title=" + this.getTitle() + "artist=" +this.getArtist().getName()
-         + "label=" + label + ", medium=" + medium 
+         + "label=" + label + ", format=" + format 
          + ", numberOfCopies=" + numberOfCopies + "]";
     }
 

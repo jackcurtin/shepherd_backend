@@ -14,7 +14,7 @@ public class Label extends Profile{
     @Column
     private Boolean openToSubmissions = false;
 
-    @OneToMany
+    @OneToMany(mappedBy = "label")
     @JsonIgnore
     private List<LabelRelease> releases;
 

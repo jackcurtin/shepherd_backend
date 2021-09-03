@@ -40,7 +40,7 @@ public class LabelReleaseService {
     
     public LabelRelease createLabelRelease(Long releaseId, Map<String, String> labelReleaseObject){
         System.out.println("Service calling createLabelRelease");
-        Optional<Release> releaseOpt = releaseRepo.findById(Long.parseLong(labelReleaseObject.get("releaseId")));
+        Optional<Release> releaseOpt = releaseRepo.findById(releaseId);
         Optional<Label> labelOpt = labelRepo.findById(Long.parseLong(labelReleaseObject.get("labelId")));
         if(releaseOpt.isEmpty()){
             throw new InformationNotFoundException("Master release not found in database");
