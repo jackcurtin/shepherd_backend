@@ -8,6 +8,7 @@ import com.example.shepherd.services.LabelReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +23,8 @@ public class LabelReleaseController {
     }
 
     @PostMapping("/{releaseId}/new")
-    public LabelRelease createLabelRelease(@PathVariable Long releaseId, Map<String, String> labelReleaseObject){
+    public LabelRelease createLabelRelease(@PathVariable Long releaseId, @RequestBody Map<String, String> labelReleaseObject){
         System.out.println("Controller calling createLabelRelease");
-        System.out.println(releaseId);
         return labelReleaseService.createLabelRelease(releaseId, labelReleaseObject);
     }
     

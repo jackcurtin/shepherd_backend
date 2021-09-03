@@ -28,6 +28,10 @@ public class LabelRelease extends Release {
         this.label = label;
     }
 
+    public LabelRelease(){
+        
+    }
+
     public String getFormat() {
         return format;
     }

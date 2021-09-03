@@ -49,6 +49,7 @@ public class LabelReleaseService {
             throw new InformationNotFoundException("Label not found in database");
         }
         else{
+            System.out.println("in ELSE block");
             Optional<LabelRelease> labelReleaseOpt = labelReleaseRepo.findByTitleAndArtistAndLabel(
                 releaseOpt.get().getTitle(), 
                 releaseOpt.get().getArtist(), 
