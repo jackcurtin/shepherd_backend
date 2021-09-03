@@ -14,7 +14,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class Label extends Profile{
 
     @Column
-    private Boolean openToSubmissions;
+    private Boolean openToSubmissions = false;
 
     @ManyToMany
     @Cascade({org.hibernate.annotations.CascadeType.REMOVE, org.hibernate.annotations.CascadeType.DELETE})
@@ -27,7 +27,6 @@ public class Label extends Profile{
 
     public Label(String name, String city) {
         super(name, city);
-        openToSubmissions = false;
     }
 
     public Label() {
