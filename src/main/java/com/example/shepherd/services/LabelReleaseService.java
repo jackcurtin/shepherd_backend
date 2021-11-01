@@ -15,8 +15,6 @@ import com.example.shepherd.repos.ReleaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class LabelReleaseService {
     private LabelReleaseRepo labelReleaseRepo;
